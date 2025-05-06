@@ -11,9 +11,9 @@ import tensorflow as tf
 import joblib
 import streamlit as st
 
-model = tf.keras.models.load_model('C:\\Tendulkar Docs\\Machine Learning\\Deployment\\Airline_Satisfaction.keras')
-bundle = joblib.load('C:\\Tendulkar Docs\\Machine Learning\\Deployment\\encoder_bundle.joblib')
-column_names = joblib.load('C:\\Tendulkar Docs\\Machine Learning\\Deployment\\columns.joblib')
+model = tf.keras.models.load_model('Projects/Airline_Customer_Satisfaction_Prediction_Model/Airline_Customer_Satisfaction_WebApp.py')
+bundle = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/encoder_bundle.joblib')
+column_names = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/columns.joblib')
 preprocessed = bundle['preprocessor']
 label_encoder = bundle['labelencoder']
 
