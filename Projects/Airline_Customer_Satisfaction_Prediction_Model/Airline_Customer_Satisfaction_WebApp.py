@@ -1,0 +1,93 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue May  6 18:04:53 2025
+
+@author: HP
+"""
+
+import numpy as np
+import pandas as pd
+import tensorflow as tf
+import joblib
+import streamlit as st
+
+model = tf.keras.models.load_model('C:\\Tendulkar Docs\\Machine Learning\\Deployment\\Airline_Satisfaction.keras')
+bundle = joblib.load('C:\\Tendulkar Docs\\Machine Learning\\Deployment\\encoder_bundle.joblib')
+column_names = joblib.load('C:\\Tendulkar Docs\\Machine Learning\\Deployment\\columns.joblib')
+preprocessed = bundle['preprocessor']
+label_encoder = bundle['labelencoder']
+
+def Airline_Satisfaction(input_data):
+    
+    ip_df = pd.DataFrame([input_data], columns = column_names)
+    ip_df = ip_df.astype({
+    'Gender': 'object',
+    'Customer Type': 'object',
+    'Age': 'int',
+    'Type of Travel': 'object',
+    'Class': 'object',
+    'Flight Distance': 'int',
+    'Seat comfort': 'int',
+    'Departure/Arrival time convenient': 'int',
+    'Food and drink': 'int',
+    'Gate location': 'int',
+    'Inflight wifi service': 'int',
+    'Inflight entertainment': 'int',
+    'Online support': 'int',
+    'Ease of Online booking': 'int',
+    'On-board service': 'int',
+    'Leg room service': 'int',
+    'Baggage handling': 'int',
+    'Checkin service': 'int',
+    'Cleanliness': 'int',
+    'Online boarding': 'int', 
+    'Departure Delay in Minutes': 'int',
+    'Arrival Delay in Minutes': 'float'
+})
+    encoded_ip = preprocessed.transform(ip_df)
+    output = model.predict(encoded_ip).ravel()
+    predictions = (output > 0.5).astype(int)
+    Customer_Feedback = label_encoder.inverse_transform(predictions)
+    return f"Our customer feels that he is {Customer_Feedback[0]} with our airline journey"
+def main():
+    st.title('Airline Customer Satisfaction Application')
+    Gender = st.text_input('Gender of the Passenger')
+    Customer_Type = st.text_input('Enter the type of the Customer')
+    Age = st.number_input('Enter the age of the Customer')
+    Type_of_Travel = st.text_input('Enter the type of travel of the Customer')
+    Class_Travelled = st.text_input('Enter the Class in which passenger travelled')
+    Flight_Distance = st.number_input('Enter the Distance travelled by the Customer')
+    Seat_Comfort = st.number_input('Enter the rating for Seat Comfort in the Flight')
+    Departure_OR_Arrival_Time_Convenient = st.number_input('Enter the rating for Departure/Arrival time convenient')
+    Food_and_Drink = st.number_input('Enter the rating for Food and Beverages')
+    Gate_Location = st.number_input('Enter the rating for Gate Location')
+    Inflight_Wifi_Service = st.number_input('Enter the rating for Inflight wifi service')
+    Inflight_Entertainment = st.number_input('Enter the rating for Inflight entertainment')
+    Online_Support = st.number_input('Enter the rating for Online support')
+    Ease_of_Online_Booking = st.number_input('Enter the rating for Ease of Online Booking')
+    Onboard_Service = st.number_input('Enter the rating for Onboard Services')
+    Legroom_Service = st.number_input('Enter the rating for Leg room service')
+    Baggage_Handling = st.number_input('Enter the rating for Baggage Handling')
+    Checkin_Service = st.number_input('Enter the rating for Checkin Service')
+    Cleanliness = st.number_input('Enter the rating for Cleanliness in the Flight')
+    Online_Boarding = st.number_input('Enter the rating for Online boarding')
+    Departure_Delay_in_Minutes = st.number_input('Enter the Departure Delay')
+    Arrival_Delay_in_Minutes = st.number_input('Enter the Arrival Delay')
+    
+    
+    Feedback = ''
+    
+    if st.button('Airline Customer Satisfaction'):
+        Feedback = Airline_Satisfaction([Gender, Customer_Type, Age, Type_of_Travel, 
+                                         Class_Travelled, Flight_Distance, Seat_Comfort, Departure_OR_Arrival_Time_Convenient, 
+                                         Food_and_Drink, Gate_Location, Inflight_Wifi_Service, 
+                                         Inflight_Entertainment, Online_Support, Ease_of_Online_Booking,  
+                                         Onboard_Service,  Legroom_Service, 
+                                         Baggage_Handling, Checkin_Service, 
+                                         Cleanliness, Online_Boarding, Departure_Delay_in_Minutes, 
+                                         Arrival_Delay_in_Minutes])
+    st.success(Feedback)
+    
+if __name__ == '__main__':
+    main()
+ 
