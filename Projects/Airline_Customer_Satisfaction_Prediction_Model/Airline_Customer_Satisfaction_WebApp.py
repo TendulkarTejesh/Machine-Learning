@@ -13,9 +13,10 @@ import streamlit as st
 
 model = tf.keras.models.load_model('Projects/Airline_Customer_Satisfaction_Prediction_Model/Airline_Satisfaction.keras')
 bundle = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/encoder_bundle.joblib')
-column_names = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/columns.joblib')
+#column_names = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/columns.joblib')
 preprocessed = bundle['preprocessor']
 label_encoder = bundle['labelencoder']
+column_names = bundle['columns']
 
 def Airline_Satisfaction(input_data):
     
