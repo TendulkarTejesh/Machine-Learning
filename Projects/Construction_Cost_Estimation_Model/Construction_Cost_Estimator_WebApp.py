@@ -11,7 +11,7 @@ import pandas as pd
 import streamlit as st
 import joblib
 
-model = tf.keras.models.load_model('Projects/Construction_Cost_Estimation_Model/Construction_Cost_Estimation_Trained.keras', complie = False)
+model = tf.keras.models.load_model('Projects/Construction_Cost_Estimation_Model/Construction_Cost_Estimation_Trained.keras', compile = False)
 bundle = joblib.load('Projects/Construction_Cost_Estimation_Model/bundle_pack.joblib')
 scaler = bundle['preprocessor']
 column_names = bundle['feature_columns']
