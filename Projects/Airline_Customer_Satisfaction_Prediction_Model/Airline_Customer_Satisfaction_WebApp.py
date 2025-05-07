@@ -79,15 +79,22 @@ def main():
     Feedback = ''
     
     if st.button('Airline Customer Satisfaction'):
-        Feedback = Airline_Satisfaction([Gender, Customer_Type, Age, Type_of_Travel, 
-                                         Class_Travelled, Flight_Distance, Seat_Comfort, Departure_OR_Arrival_Time_Convenient, 
-                                         Food_and_Drink, Gate_Location, Inflight_Wifi_Service, 
-                                         Inflight_Entertainment, Online_Support, Ease_of_Online_Booking,  
-                                         Onboard_Service,  Legroom_Service, 
-                                         Baggage_Handling, Checkin_Service, 
-                                         Cleanliness, Online_Boarding, Departure_Delay_in_Minutes, 
-                                         Arrival_Delay_in_Minutes])
-    st.success(Feedback)
+        try:
+            input_features = [str(Gender), str(Customer_Type), int(Age), str(Type_of_Travel), 
+                              str(Class_Travelled), float(Flight_Distance), int(Seat_Comfort),
+                              int(Departure_OR_Arrival_Time_Convenient), int(Food_and_Drink), 
+                              int(Gate_Location), int(Inflight_Wifi_Service), int(Inflight_Entertainment), 
+                              int(Online_Support), int(Ease_of_Online_Booking), int(Onboard_Service), 
+                              int(Legroom_Service), int(Baggage_Handling), int(Checkin_Service), 
+                              int(Cleanliness), int(Online_Boarding), float(Departure_Delay_in_Minutes), 
+                              float(Arrival_Delay_in_Minutes)]
+            Feedback = Airline_Satisfaction([input_features])
+                                             
+            
+            st.success(Feedback)
+        
+        except ValueError:
+            return "Please enter valid values for all fields"
     
 if __name__ == '__main__':
     main()
