@@ -88,13 +88,13 @@ def main():
                               int(Legroom_Service), int(Baggage_Handling), int(Checkin_Service), 
                               int(Cleanliness), int(Online_Boarding), float(Departure_Delay_in_Minutes), 
                               float(Arrival_Delay_in_Minutes)]
-            Feedback = Airline_Satisfaction([input_features])
+            Feedback = Airline_Satisfaction(input_features)
                                              
             
             st.success(Feedback)
         
         except ValueError:
-            return "Please enter valid values for all fields"
+            st.error("Please enter valid values for all fields")
     
 if __name__ == '__main__':
     main()
