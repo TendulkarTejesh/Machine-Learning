@@ -49,7 +49,7 @@ def Airline_Satisfaction(input_data):
     output = model.predict(encoded_ip).ravel()
     predictions = (output > 0.5).astype(int)
     Customer_Feedback = label_encoder.inverse_transform(predictions)
-    return f"Our customer feels that he is {Customer_Feedback[0]} with our airline journey"
+    return f"Our customer feels that they are {Customer_Feedback[0]} with our airline journey"
 def main():
     st.title('Airline Customer Satisfaction Application')
     Gender = st.text_input('Gender of the Passenger')
