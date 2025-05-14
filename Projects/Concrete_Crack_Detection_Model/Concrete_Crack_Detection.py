@@ -12,7 +12,7 @@ import streamlit as st
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 
-model = tf.keras.models.load_model('C:\\Tendulkar Docs\\Machine Learning\\Deployment\\Construction_Crack_Detection\\construction_crack_detection.keras')
+model = tf.keras.models.load_model('Projects/Concrete_Crack_Detection_Model/concrete_crack_detection.keras')
 
 def crack_detection(input_data):
     input_img = Image.open(input_data)
