@@ -12,8 +12,9 @@ import streamlit as st
 from tensorflow.keras.preprocessing import image
 from PIL import Image
 
+@st.cache_resource
 def loaded_model():
-    return tf.keras.load_model('Projects/Concrete_Crack_Detection_Model/crack_detection_model.keras')
+    return tf.keras.load_model('Projects/Concrete_Crack_Detection_Model/crack_detection_model.keras', compile = False)
     
 model = loaded_model()
 
