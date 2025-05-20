@@ -11,10 +11,11 @@ import tensorflow as tf
 import joblib
 import streamlit as st
 
+@st.cache_resouce
 def loaded_model():
-    return tf.keras.models.load_model('Projects/Airline_Customer_Satisfaction_Prediction_Model/Airline_Satisfaction.keras')
+    return tf.keras.models.load_model('Projects/Airline_Customer_Satisfaction_Prediction_Model/Airline_Satisfaction.keras', compile = Flase)
 
-model = loaded_model
+model = loaded_model()
 bundle = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/encoder_bundle.joblib')
 #column_namess = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/columns.joblib')
 preprocessed = bundle['preprocessor']
