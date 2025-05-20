@@ -11,6 +11,7 @@ import pandas as pd
 import streamlit as st
 import joblib
 
+@st.cache_resource
 def loaded_model():
     return tf.keras.models.load_model('Projects/Construction_Cost_Estimation_Model/Construction_Cost_Estimation_Trained.keras', compile = False)
 model = loaded_model()
