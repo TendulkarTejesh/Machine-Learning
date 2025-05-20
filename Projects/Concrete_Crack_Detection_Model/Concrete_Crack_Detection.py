@@ -14,7 +14,7 @@ from PIL import Image
 
 @st.cache_resource
 def loaded_model():
-    return tf.keras.model.load_model('Projects/Concrete_Crack_Detection_Model/crack_detection_model.keras', compile = False)
+    return tf.keras.models.load_model('Projects/Concrete_Crack_Detection_Model/crack_detection_model.keras', compile = False)
     
 model = loaded_model()
 
