@@ -11,7 +11,7 @@ import tensorflow as tf
 import joblib
 import streamlit as st
 
-@st.cache_resouce
+@st.cache_resource
 def loaded_model():
     return tf.keras.models.load_model('Projects/Airline_Customer_Satisfaction_Prediction_Model/Airline_Satisfaction.keras', compile = Flase)
 
