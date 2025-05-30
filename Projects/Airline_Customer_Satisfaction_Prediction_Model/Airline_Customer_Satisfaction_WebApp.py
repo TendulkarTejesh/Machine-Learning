@@ -13,7 +13,7 @@ import streamlit as st
 
 @st.cache_resource
 def loaded_model():
-    return tf.keras.models.load_model('Projects/Airline_Customer_Satisfaction_Prediction_Model/Airline_Satisfaction.keras', compile = Flase)
+    return tf.keras.models.load_model('Projects/Airline_Customer_Satisfaction_Prediction_Model/Airline_Satisfaction.keras', compile = False)
 
 model = loaded_model()
 bundle = joblib.load('Projects/Airline_Customer_Satisfaction_Prediction_Model/encoder_bundle.joblib')
